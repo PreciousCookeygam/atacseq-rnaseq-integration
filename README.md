@@ -143,25 +143,25 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 
 ### Volcano plots
 
-![ATAC all TCGA volcano](output/volcano_ATAC_allTCGA_vs_P0.png)
-![ATAC LumP volcano](output/volcano_ATAC_LumP_vs_P0.png)
-![RNA all TCGA volcano](output/volcano_RNA_allTCGA_vs_P0.png)
-![RNA LumP volcano](output/volcano_RNA_LumP_vs_P0.png)
+![ATAC all TCGA volcano](docs/images/volcano_ATAC_allTCGA_vs_P0.png)
+![ATAC LumP volcano](docs/images/volcano_ATAC_LumP_vs_P0.png)
+![RNA all TCGA volcano](docs/images/volcano_RNA_allTCGA_vs_P0.png)
+![RNA LumP volcano](docs/images/volcano_RNA_LumP_vs_P0.png)
 
 ### π-score concordance
 
-![PI score all TCGA](output/pi_score_allTCGA_vs_P0.png)
-![PI score LumP](output/pi_score_LumP_vs_P0.png)
+![PI score all TCGA](docs/images/pi_score_allTCGA_vs_P0.png)
+![PI score LumP](docs/images/pi_score_LumP_vs_P0.png)
 
 ### Venn overlap plots
 
-![ATAC up Venn](output/venn_ATAC_Up_TCGA_vs_LumP.png)
-![RNA up Venn](output/venn_RNA_Up_TCGA_vs_LumP.png)
+![ATAC up Venn](docs/images/venn_ATAC_Up_TCGA_vs_LumP.png)
+![RNA up Venn](docs/images/venn_RNA_Up_TCGA_vs_LumP.png)
 
 ### Standardised GO dotplots
 
-![ATAC core up GO](output/ATAC_core_UP_GO_BP_std.png)
-![RNA core down GO](output/RNA_core_DOWN_GO_BP_std.png)
+![ATAC core up GO](docs/images/ATAC_core_UP_GO_BP_std.png)
+![RNA core down GO](docs/images/RNA_core_DOWN_GO_BP_std.png)
 
 ## Thresholds
 
