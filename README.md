@@ -156,11 +156,15 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 ### Venn overlap plots
 
 ![ATAC up Venn](docs/images/venn_ATAC_Up_TCGA_vs_LumP.png)
+![ATAC down Venn](docs/images/venn_ATAC_Down_TCGA_vs_LumP.png)
 ![RNA up Venn](docs/images/venn_RNA_Up_TCGA_vs_LumP.png)
+![RNA down Venn](docs/images/venn_RNA_Down_TCGA_vs_LumP.png)
 
 ### Standardised GO dotplots
 
 ![ATAC core up GO](docs/images/ATAC_core_UP_GO_BP_std.png)
+![ATAC core down GO](docs/images/ATAC_core_DOWN_GO_BP_std.png)
+![RNA core up GO](docs/images/RNA_core_UP_GO_BP_std.png)
 ![RNA core down GO](docs/images/RNA_core_DOWN_GO_BP_std.png)
 
 ## Thresholds
