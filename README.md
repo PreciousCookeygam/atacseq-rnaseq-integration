@@ -141,7 +141,25 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 
 ## Example Output Figures
 
+These figures are intended to answer three questions:
+
+1. **What changes are significant within each cohort comparison?** (Volcano plots)
+2. **How consistent are ATAC and RNA effects for the same genes?** (π-score plots)
+3. **Which dysregulated genes are shared between cohorts, and what biology do they represent?** (Venn + GO plots)
+
 ### Volcano plots
+
+Each volcano plot shows differential signal for one modality and one contrast:
+
+- **x-axis**: log2 fold-change ($\log_2FC$), where right = upregulated and left = downregulated.
+- **y-axis**: $-\log_{10}(p_{adj})$, where higher points are more statistically significant.
+- Vertical and horizontal threshold lines correspond to the pipeline cut-offs ($|\log_2FC| \ge 1$ and $p_{adj} < 0.05$).
+
+Interpretation:
+
+- Points in the **upper-right** quadrant are significantly upregulated.
+- Points in the **upper-left** quadrant are significantly downregulated.
+- Comparing TCGA vs LumP volcanoes highlights subtype-specific versus broadly shared effects.
 
 ![ATAC all TCGA volcano](docs/images/volcano_ATAC_allTCGA_vs_P0.png)
 ![ATAC LumP volcano](docs/images/volcano_ATAC_LumP_vs_P0.png)
@@ -150,10 +168,30 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 
 ### π-score concordance
 
+π-score integrates effect size and significance to compare ATAC and RNA changes per gene.
+
+- **x-axis**: ATAC π-score
+- **y-axis**: RNA π-score
+- Each point represents a gene present in both modalities.
+
+Interpretation:
+
+- Genes near the **positive diagonal** show concordant activation (both ATAC and RNA increased).
+- Genes near the **negative diagonal** show concordant repression (both decreased).
+- Opposite-sign quadrants indicate discordant regulation (accessibility and expression moving in different directions).
+
 ![PI score all TCGA](docs/images/pi_score_allTCGA_vs_P0.png)
 ![PI score LumP](docs/images/pi_score_LumP_vs_P0.png)
 
 ### Venn overlap plots
+
+Venn diagrams compare significant gene sets between cohorts (All TCGA vs LumP), separately for upregulated and downregulated genes in each modality.
+
+Interpretation:
+
+- **Intersection region** = shared core dysregulated genes across cohorts.
+- **Non-overlapping regions** = cohort-specific dysregulation.
+- These intersections are exported as core gene lists and used for downstream enrichment.
 
 ![ATAC up Venn](docs/images/venn_ATAC_Up_TCGA_vs_LumP.png)
 ![ATAC down Venn](docs/images/venn_ATAC_Down_TCGA_vs_LumP.png)
@@ -161,6 +199,18 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 ![RNA down Venn](docs/images/venn_RNA_Down_TCGA_vs_LumP.png)
 
 ### Standardised GO dotplots
+
+GO:BP dotplots summarize functional enrichment of the core overlapping gene sets.
+
+- **y-axis**: enriched biological process term.
+- **x-axis**: standardized gene ratio (comparable across contrasts).
+- **dot size**: number of genes mapped to the term.
+- **dot color**: enrichment significance (more intense color = lower adjusted p-value).
+
+Interpretation:
+
+- Large, strongly colored dots to the right indicate robust and substantial pathway enrichment.
+- Comparing ATAC and RNA panels reveals whether chromatin-level and transcription-level signals converge on similar biology.
 
 ![ATAC core up GO](docs/images/ATAC_core_UP_GO_BP_std.png)
 ![ATAC core down GO](docs/images/ATAC_core_DOWN_GO_BP_std.png)
