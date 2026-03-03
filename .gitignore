@@ -1,0 +1,22 @@
+# R project files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Data files (too large for version control)
+data/*.tsv
+data/*.rnk
+
+# Output artefacts
+output/
+results_GO/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# renv library (tracked via lockfile)
+renv/library/
+renv/staging/
+renv/sandbox/

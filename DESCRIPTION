@@ -1,0 +1,30 @@
+Type: Project
+Package: atacseq.rnaseq.integration
+Title: ATAC-seq and RNA-seq Integrative Analysis of TCGA-BLCA
+Version: 1.0.0
+Authors@R:
+    person("User", role = c("aut", "cre"))
+Description: Integrative analysis of ATAC-seq chromatin accessibility and
+    RNA-seq gene expression data comparing TCGA-BLCA (bladder cancer) cohorts
+    against normal bladder (P0) controls. Includes differential accessibility
+    and expression volcano plots, pi-score concordance analysis, Venn diagram
+    overlap assessment, and Gene Ontology enrichment analysis.
+License: MIT
+Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
+Imports:
+    dplyr,
+    readr,
+    ggplot2,
+    ggrepel,
+    VennDiagram,
+    grid,
+    scales,
+    here,
+    clusterProfiler,
+    org.Hs.eg.db,
+    enrichplot
+Suggests:
+    renv,
+    BiocManager
