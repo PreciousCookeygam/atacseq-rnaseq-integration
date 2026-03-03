@@ -139,6 +139,30 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 | 3    | `03_venns.R`        | 4 Venn diagrams + 4 core gene TSVs + manuscript text  |
 | 4    | `04_go_enrichment.R`| GO:BP enrichment tables, dotplots, and barplots       |
 
+## Example Output Figures
+
+### Volcano plots
+
+![ATAC all TCGA volcano](output/volcano_ATAC_allTCGA_vs_P0.png)
+![ATAC LumP volcano](output/volcano_ATAC_LumP_vs_P0.png)
+![RNA all TCGA volcano](output/volcano_RNA_allTCGA_vs_P0.png)
+![RNA LumP volcano](output/volcano_RNA_LumP_vs_P0.png)
+
+### π-score concordance
+
+![PI score all TCGA](output/pi_score_allTCGA_vs_P0.png)
+![PI score LumP](output/pi_score_LumP_vs_P0.png)
+
+### Venn overlap plots
+
+![ATAC up Venn](output/venn_ATAC_Up_TCGA_vs_LumP.png)
+![RNA up Venn](output/venn_RNA_Up_TCGA_vs_LumP.png)
+
+### Standardised GO dotplots
+
+![ATAC core up GO](output/ATAC_core_UP_GO_BP_std.png)
+![RNA core down GO](output/RNA_core_DOWN_GO_BP_std.png)
+
 ## Thresholds
 
 All statistical thresholds are centralised in [`R/config.R`](R/config.R):
