@@ -24,6 +24,14 @@ FILE_LUMP_VS_BASQ <- here::here("data", "ATACseq_annotated_results_TCGA-BLCA-Lum
 FILE_MERGED <- here::here("data", "Merged_ATAC_RNA_results.tsv")
 FILE_CONCORDANT_GENES <- here::here("data", "concordant_core_152_genes.tsv")
 FILE_RNA_RANK <- here::here("data", "rna_seq_rank.rnk")
+FILE_ATAC_RANK <- here::here("data", "atac_seq_rank.rnk")
+
+# ---------------------------------------------------------------------------
+# Python integration (for .rnk generation)
+# ---------------------------------------------------------------------------
+
+PYTHON_GSEA_SCRIPT <- here::here("python", "scripts", "run_gsea_prerank.py")
+PYTHON_EXE <- Sys.getenv("PYTHON_EXE", unset = "python")
 
 # ---------------------------------------------------------------------------
 # Output directory

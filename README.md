@@ -10,6 +10,7 @@ Luminal Papillary subtype) against **normal bladder (P0)** controls.
 ├── R/                        # Reusable function modules (source these)
 │   ├── config.R              # Thresholds, colour palettes, paths
 │   ├── utils.R               # General-purpose helpers
+│   ├── rnk_integration.R     # Ensure/generate required .rnk files
 │   ├── load_data.R           # Cached data loading & column selection
 │   ├── volcano.R             # Volcano plot construction
 │   ├── pi_score.R            # π-score computation & scatter plots
@@ -18,11 +19,21 @@ Luminal Papillary subtype) against **normal bladder (P0)** controls.
 │   └── go_enrichment.R       # GO enrichment & standardised dotplots
 │
 ├── analysis/                 # Thin orchestration scripts (run these)
+│   ├── 00_prepare_rnk.R      # Step 0: ensure/generate ATAC/RNA .rnk files
 │   ├── 01_volcanos.R         # ATAC + RNA volcano plots (4 plots)
 │   ├── 02_pi_scores.R        # π-score plots + concordance stats
 │   ├── 03_venns.R            # Venn diagrams + core gene-set exports
 │   ├── 04_go_enrichment.R    # GO:BP enrichment + publication dotplots
-│   └── run_all.R             # Master script — runs steps 01–04
+│   └── run_all.R             # Master script — runs steps 00–04
+│
+├── python/                   # Python package for .rnk generation / GSEApy
+│   ├── gsea/
+│   │   ├── config.py
+│   │   ├── io.py
+│   │   └── prerank.py
+│   ├── scripts/
+│   │   └── run_gsea_prerank.py
+│   └── requirements.txt
 │
 ├── data/                     # Input data files (not version-controlled)
 │   ├── ATACseq_annotated_results_TCGA-BLCA_vs_P0-Bladder.tsv
@@ -30,7 +41,8 @@ Luminal Papillary subtype) against **normal bladder (P0)** controls.
 │   ├── ATACseq_annotated_results_TCGA-BLCA-LumP_vs_TCGA-BLCA-BaSq.tsv
 │   ├── Merged_ATAC_RNA_results.tsv
 │   ├── concordant_core_152_genes.tsv
-│   └── rna_seq_rank.rnk
+│   ├── rna_seq_rank.rnk
+│   └── atac_seq_rank.rnk
 │
 ├── output/                   # Generated plots and tables (gitignored)
 │
@@ -60,12 +72,30 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install(c("clusterProfiler", "org.Hs.eg.db", "enrichplot"))
 ```
 
-### 2. Place data files
+**Python packages (for automatic `.rnk` generation):**
 
-Copy or move the input TSV and `.rnk` files into the `data/` directory.  The
-file names expected by the pipeline are listed in `R/config.R`.
+```bash
+pip install -r python/requirements.txt
+```
 
-### 3. Run the full pipeline
+### 2. Configure Python executable (optional)
+
+By default, R uses `python`. You can override this with environment variable
+`PYTHON_EXE`.
+
+**Windows (PowerShell):**
+
+```powershell
+$env:PYTHON_EXE="C:\\path\\to\\python.exe"
+```
+
+### 3. Place data files
+
+Copy or move the input TSV files into the `data/` directory. If `.rnk` files
+are missing, Step 0 auto-generates them from `Merged_ATAC_RNA_results.tsv`.
+Expected names are listed in `R/config.R`.
+
+### 4. Run the full pipeline
 
 From the project root:
 
@@ -77,6 +107,7 @@ Or run individual steps:
 
 ```r
 library(here)
+source(here::here("analysis", "00_prepare_rnk.R"))
 source(here::here("analysis", "01_volcanos.R"))
 source(here::here("analysis", "02_pi_scores.R"))
 source(here::here("analysis", "03_venns.R"))
@@ -102,6 +133,7 @@ Each annotated results TSV contains one row per **peak–gene pair** with
 
 | Step | Script              | What it produces                                      |
 |------|---------------------|-------------------------------------------------------|
+| 0    | `00_prepare_rnk.R`  | Validates rank files; auto-generates missing `.rnk`   |
 | 1    | `01_volcanos.R`     | 4 volcano plots (ATAC/RNA × TCGA/LumP)               |
 | 2    | `02_pi_scores.R`    | 2 π-score scatter plots + concordance stats + exports |
 | 3    | `03_venns.R`        | 4 Venn diagrams + 4 core gene TSVs + manuscript text  |

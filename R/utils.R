@@ -79,7 +79,7 @@ ratio_to_numeric <- function(x) {
 #'
 #' @return NULL (invisible). Called for side effects.
 source_all_modules <- function() {
-  modules <- c("config.R", "utils.R", "load_data.R", "volcano.R",
+  modules <- c("config.R", "utils.R", "rnk_integration.R", "load_data.R", "volcano.R",
                 "pi_score.R", "concordance.R", "venn.R", "go_enrichment.R")
   for (m in modules) {
     source(here::here("R", m), local = FALSE)

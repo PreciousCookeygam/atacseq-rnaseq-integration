@@ -20,3 +20,11 @@ Thumbs.db
 renv/library/
 renv/staging/
 renv/sandbox/
+
+# Python artifacts
+python/.venv/
+python/.env/
+**/__pycache__/
+**/*.pyc
+.ipynb_checkpoints/
+.venv/
